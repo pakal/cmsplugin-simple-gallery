@@ -11,9 +11,11 @@ class SimpleGalleryPlugin(CMSPluginBase):
     text_enabled = True
 
     def render(self, context, instance, placeholder):
+        images = instance.gallery.simpleimage_set.all()
         context.update({
-            'images': instance.gallery.simpleimage_set.all(),
-            'placeholder':placeholder
+            'images': images,
+            'placeholder': placeholder,
+            'gallery': instance.gallery,
         })
         self.render_template = instance.template
         return context

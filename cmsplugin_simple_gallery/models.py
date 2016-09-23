@@ -3,10 +3,11 @@ from django.db import models
 from django.utils.translation import ugettext_lazy as _
 from inline_ordering.models import Orderable
 from easy_thumbnails.files import get_thumbnailer
+import easy_thumbnails.utils
 from settings import *
 
 class SimpleGallery(models.Model):
-    name = models.CharField(max_length=255,blank=False,null=False)
+    name = models.CharField(max_length=255, blank=False, null=False)
 
     def __unicode__(self):
         return self.name
@@ -23,7 +24,9 @@ class SimpleImage(Orderable):
         get_thumbnailer(self.src).get_thumbnail(CMS_SIMPLEGALLERY_THUMBNAIL_OPTIONS)
 
     def get_thumbnail(self):
-        return settings.MEDIA_URL + get_thumbnailer(self.src).get_thumbnail_name(CMS_SIMPLEGALLERY_THUMBNAIL_OPTIONS)
+        thumbnailer = get_thumbnailer(self.src)
+        thb = thumbnailer.get_thumbnail(CMS_SIMPLEGALLERY_THUMBNAIL_OPTIONS, save=True)
+        return thb.url
 
     def __unicode__(self):
         return str(self.pk)
