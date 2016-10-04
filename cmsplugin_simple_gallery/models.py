@@ -7,6 +7,10 @@ import easy_thumbnails.utils
 from settings import *
 
 class SimpleGallery(models.Model):
+
+    class Meta:
+        verbose_name_plural = "Simple Galleries"
+        
     name = models.CharField(max_length=255, blank=False, null=False)
 
     def __unicode__(self):
