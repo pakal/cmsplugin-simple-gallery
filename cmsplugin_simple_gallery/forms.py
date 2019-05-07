@@ -12,8 +12,8 @@ class AdminImageWidget(AdminFileWidget):
             thumbnail = get_thumbnailer(value).get_thumbnail_name(CMS_SIMPLEGALLERY_THUMBNAIL_OPTIONS)
             image_url = settings.MEDIA_URL + thumbnail
             file_name = str(value)
-            output.append(u' <a href="%s" target="_blank"><img src="%s" alt="%s" style="height: 100px;" /></a><br /> %s ' % \
-                          (unicode(image_url), unicode(image_url), unicode(file_name), _('Change:')))
+            output.append(' <a href="%s" target="_blank"><img src="%s" alt="%s" style="height: 100px;" /></a><br /> %s ' % \
+                          (str(image_url), str(image_url), str(file_name), _('Change:')))
 
         output.append(super(AdminFileWidget, self).render(name, value, attrs))
-        return mark_safe(u''.join(output))
+        return mark_safe(''.join(output))
