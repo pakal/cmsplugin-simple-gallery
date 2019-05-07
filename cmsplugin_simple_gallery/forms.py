@@ -3,7 +3,7 @@ from django.utils.translation import ugettext as _
 from django.utils.safestring import mark_safe
 from django.conf import settings
 from easy_thumbnails.files import get_thumbnailer
-from settings import CMS_SIMPLEGALLERY_THUMBNAIL_OPTIONS
+from .settings import CMS_SIMPLEGALLERY_THUMBNAIL_OPTIONS
 
 class AdminImageWidget(AdminFileWidget):
     def render(self, name, value, attrs=None):

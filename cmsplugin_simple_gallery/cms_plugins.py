@@ -1,8 +1,8 @@
 from cms.plugin_base import CMSPluginBase
 from cms.plugin_pool import plugin_pool
 from django.utils.translation import ugettext_lazy as _
-import models
-import settings
+from . import models
+from . import settings
 
 class SimpleGalleryPlugin(CMSPluginBase):
     model = models.SimpleGalleryPointer

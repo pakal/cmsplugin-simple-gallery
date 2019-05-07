@@ -4,7 +4,7 @@ from django.utils.translation import ugettext_lazy as _
 from inline_ordering.models import Orderable
 from easy_thumbnails.files import get_thumbnailer
 import easy_thumbnails.utils
-from settings import *
+from .settings import *
 
 class SimpleGallery(models.Model):
 

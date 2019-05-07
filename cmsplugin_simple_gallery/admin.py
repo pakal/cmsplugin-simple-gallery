@@ -1,7 +1,7 @@
 from django.contrib import admin
 from inline_ordering.admin import OrderableStackedInline
-import forms
-import models
+from . import forms
+from . import models
 
 class SimpleImageInline(OrderableStackedInline):
     model = models.SimpleImage
