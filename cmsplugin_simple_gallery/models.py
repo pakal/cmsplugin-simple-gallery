@@ -1,6 +1,6 @@
 from cms.models import CMSPlugin
 from django.db import models
-from django.utils.translation import ugettext_lazy as _
+from django.utils.translation import gettext_lazy as _
 from inline_ordering.models import Orderable
 from easy_thumbnails.files import get_thumbnailer
 import easy_thumbnails.utils
@@ -17,7 +17,7 @@ class SimpleGallery(models.Model):
         return self.name
 
 class SimpleImage(Orderable):
-    gallery = models.ForeignKey(SimpleGallery)
+    gallery = models.ForeignKey(SimpleGallery, on_delete=models.CASCADE)
     src = models.ImageField(upload_to=CMS_SIMPLEGALLERY_UPLOAD_TO,
         height_field='src_height', width_field='src_width')
     src_height = models.PositiveSmallIntegerField(editable=False, null=True)
@@ -36,7 +36,7 @@ class SimpleImage(Orderable):
         return str(self.pk)
 
 class SimpleGalleryPointer(CMSPlugin):
-    gallery = models.ForeignKey(SimpleGallery)
+    gallery = models.ForeignKey(SimpleGallery, on_delete=models.CASCADE)
     template = models.CharField(max_length=255, choices=CMS_SIMPLEGALLERY_TEMPLATES,
         default=CMS_SIMPLEGALLERY_DEFAULT_TEMPLATE, editable=len(CMS_SIMPLEGALLERY_TEMPLATES) > 1)
     class Meta:
